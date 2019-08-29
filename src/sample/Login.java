@@ -21,7 +21,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+// https://docs.oracle.com/javafx/2/get_started/jfxpub-get_started.htm
+public class Login extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -35,7 +36,7 @@ public class Main extends Application {
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         Text scenetitle = new Text("Welcome");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        scenetitle.setId("welcome-text");
         grid.add(scenetitle, 0, 0, 2, 1);
 
         Label userName = new Label("User Name:");
@@ -51,13 +52,13 @@ public class Main extends Application {
         grid.add(pwBox, 1, 2);
 
         final Text actiontarget = new Text();
+        actiontarget.setId("actiontarget");
         grid.add(actiontarget, 1, 6);
         Button btn = new Button("Sign In");
         btn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent e) {
-                actiontarget.setFill(Color.FIREBRICK);
                 actiontarget.setText("Sign in button pressed");
             }
         });
@@ -66,18 +67,11 @@ public class Main extends Application {
         hbBtn.getChildren().add(btn);
         grid.add(hbBtn, 1, 4);
 
-
-        grid.setGridLinesVisible(true);
-
-
         Scene scene = new Scene(grid, 300, 275);
         primaryStage.setScene(scene);
-
-
-
-
-        //primaryStage.setScene(new Scene(root, 300, 250));
+        scene.getStylesheets().add(Login.class.getResource("../css/Login.css").toExternalForm());
         primaryStage.show();
+
     }
 
 
